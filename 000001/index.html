@@ -28,8 +28,8 @@
   .code{font-family:Montserrat;font-weight:700;font-size:13px;color:var(--bordo);background:var(--bordo-chiaro);padding:4px 10px;border-radius:999px}
 
   .hero{margin-top:16px;border-radius:16px;overflow:hidden;background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.06)}
-  .foto{height:190px;background:linear-gradient(135deg,#8B2E2E 0%,#3a1414 100%);display:flex;align-items:center;justify-content:center;color:#fff;position:relative}
-  .foto img{width:100%;height:100%;object-fit:cover;display:block}
+  .foto{height:220px;background:linear-gradient(135deg,#8B2E2E 0%,#3a1414 100%);display:flex;align-items:center;justify-content:center;color:#fff;position:relative}
+  .foto img{width:100%;height:100%;object-fit:cover;object-position:45% 45%;display:block}
   .foto .ph{opacity:.85;font-size:13px;text-align:center}
   .foto .ph svg{width:56px;height:56px;display:block;margin:0 auto 6px}
   .hero-body{padding:16px}
@@ -108,7 +108,7 @@
 
 <header>
   <div class="wrap">
-    <a class="brand" href="../"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#8B2E2E" d="M8 8h42a42 42 0 0 1 0 84H8V66h40a16 16 0 0 0 0-32H8z"/><rect fill="#8B2E2E" x="8" y="40" width="22" height="20"/></svg>DOMID</a>
+    <a class="brand" href="../"><svg viewBox="-2 -2 100.5 104" aria-hidden="true"><path fill="#8B2E2E" d="M0 0H50A46.5 50 0 0 1 50 100H0V82H48A27 32 0 0 0 48 18H0Z"/><rect fill="#8B2E2E" x="0" y="36.5" width="29" height="27"/></svg>DOMID</a>
     <span class="code" id="codice"></span>
   </div>
 </header>
@@ -167,7 +167,7 @@
   </div>
 
   <footer>
-    <div class="brand"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#8B2E2E" d="M8 8h42a42 42 0 0 1 0 84H8V66h40a16 16 0 0 0 0-32H8z"/><rect fill="#8B2E2E" x="8" y="40" width="22" height="20"/></svg>DOMID</div>
+    <div class="brand"><svg viewBox="-2 -2 100.5 104" aria-hidden="true"><path fill="#8B2E2E" d="M0 0H50A46.5 50 0 0 1 50 100H0V82H48A27 32 0 0 0 48 18H0Z"/><rect fill="#8B2E2E" x="0" y="36.5" width="29" height="27"/></svg>DOMID</div>
     L'identità digitale dell'immobile<br>
     <span id="aggiornato"></span>
   </footer>
@@ -194,8 +194,8 @@ const IMMOBILE = {
   tipologia: "Casa bifamiliare",
   indirizzo: "Via Roncade 4",
   comune: "Lugugnana di Portogruaro (VE)",
-  foto: "",                       // es. "casa.jpg" (stessa cartella); vuoto = segnaposto
-  chips: ["Anno 19__", "2 piani", "~190 m²"],
+  foto: "casa.jpg",               // stessa cartella; vuoto = segnaposto
+  chips: ["Bifamiliare", "PT + 1°", "~190 m²", "Giardino"],
   codiceDemo: "2026",             // codice accesso dimostrativo
   ruoloDemo: "Agente immobiliare",
   contatto: "mailto:info@domid.it?subject=Richiesta%20accesso%20DOMID%20000001",
@@ -204,17 +204,17 @@ const IMMOBILE = {
   dati: [
     { l: "Tipologia",       v: "Bifamiliare",           vis: "pubblico" },
     { l: "Piani",           v: "PT + 1°",               vis: "pubblico" },
-    { l: "Anno costruz.",   v: "19__",                  vis: "pubblico" },
+    { l: "Anno costruz.",   v: "da completare",         vis: "pubblico" },
     { l: "Superficie",      v: "~190 m²",               vis: "pubblico" },
     { l: "Classe energ.",   v: "da APE",                vis: "pubblico" },
     { l: "Stato",           v: "In ristrutturazione",   vis: "pubblico" },
-    { l: "Foglio",          v: "__",                    vis: "autorizzato" },
-    { l: "Mappale / Sub",   v: "__ / __",               vis: "autorizzato" },
+    { l: "Foglio",          v: "da visura",             vis: "autorizzato" },
+    { l: "Mappale / Sub",   v: "da visura",             vis: "autorizzato" },
   ],
 
   storia: [
-    { anno: "19__", tit: "Costruzione",                 sub: "Titolo edilizio originario" },
-    { anno: "____", tit: "Accatastamento",              sub: "Planimetrie catastali" },
+    { anno: "—",    tit: "Costruzione",                 sub: "Titolo edilizio originario" },
+    { anno: "—",    tit: "Accatastamento",              sub: "Planimetrie catastali" },
     { anno: "2026", tit: "Progetto di ristrutturazione", sub: "Rilievo, computo e quadro economico" },
     { anno: "2026", tit: "Pratica edilizia",            sub: "In preparazione · cambio d'uso cantina PT" },
   ],
