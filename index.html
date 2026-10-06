@@ -72,6 +72,13 @@
     .qr-badge{left:-18px}
   }
 
+  /* Video */
+  .video{padding:0 0 80px}
+  .video .riquadro{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 70px rgba(31,41,55,.18);background:#1F2937;aspect-ratio:16/9}
+  .video video{width:100%;height:100%;display:block;object-fit:cover}
+  .video .testa{text-align:center;margin-bottom:28px}
+  .video .testa h2{margin:0 auto}
+
   /* Problema */
   .scuro{background:var(--antracite);color:#F8F9FA}
   .scuro .eyebrow{color:var(--rosa)}
@@ -217,7 +224,7 @@
       <div class="azioni">
         <a class="btn prim" href="000001/">Guarda un esempio
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn sec" href="#come">Come funziona</a>
+        <a class="btn sec" href="#video">▶ Guarda il video</a>
       </div>
       <p class="gratis"><i></i>Gratuito per proprietari e agenzie</p>
     </div>
@@ -227,6 +234,18 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="#8B2E2E" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>
         Inquadra<br>e consulta
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="video" id="video">
+  <div class="wrap">
+    <div class="testa"><p class="eyebrow">Guarda come funziona</p><h2>DOMID in un minuto.</h2></div>
+    <div class="riquadro rivela">
+      <video controls playsinline preload="none" poster="video/copertina.jpg">
+        <source src="video/domid-come-funziona.mp4" type="video/mp4">
+        Il tuo browser non riproduce il video: <a href="video/domid-come-funziona.mp4">scaricalo qui</a>.
+      </video>
     </div>
   </div>
 </section>
