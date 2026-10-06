@@ -2,37 +2,405 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#8B2E2E">
-<title>DOMID</title>
-<meta name="description" content="DOMID – L'identità digitale dell'immobile. Un unico QR, tutta la storia della casa.">
+<title>DOMID – L'identità digitale dell'immobile</title>
+<meta name="description" content="DOMID è il fascicolo digitale permanente della casa: pratiche, catasto, energia e lavori in un unico QR, legato all'immobile e non al proprietario. Gratuito.">
+<meta property="og:title" content="DOMID – L'identità digitale dell'immobile">
+<meta property="og:description" content="Un immobile. Un QR. Tutta la sua storia.">
+<meta property="og:image" content="https://domid.it/img/scheda-telefono.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  :root{
+    --bordo:#8B2E2E; --bordo-scuro:#6E2222; --bordo-chiaro:#F6ECEC; --rosa:#E8A3A3;
+    --antracite:#1F2937; --antracite-2:#2B3544; --grigio:#6B7280; --testo:#4B5563;
+    --linea:#E5E7EB; --sfondo:#F8F9FA; --bianco:#FFFFFF;
+  }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Inter,system-ui,sans-serif;background:#F8F9FA;color:#1F2937;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 16px;text-align:center}
-  .logo{width:84px;height:84px;margin:0 auto 18px}
-  h1{font-family:Montserrat;font-weight:800;font-size:44px;letter-spacing:2px}
-  .tag{color:#6B7280;font-size:17px;margin-top:4px}
-  .origine{color:#6B7280;font-size:13px;letter-spacing:1.5px;margin-top:6px}
-  .origine b{color:#1F2937;font-weight:600}
-  .claim{font-family:Montserrat;font-weight:700;font-size:20px;color:#8B2E2E;margin:36px auto 10px;max-width:420px;line-height:1.3}
-  p{max-width:420px;margin:0 auto;color:#4B5563;line-height:1.55}
-  .soon{display:inline-block;margin-top:30px;font-size:13px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#8B2E2E;border:1px solid #E7CFCF;background:#F6ECEC;padding:6px 14px;border-radius:999px}
-  a{color:#8B2E2E}
-  footer{margin-top:28px;font-size:13px;color:#6B7280}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--sfondo);color:var(--antracite);line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.mont{font-family:Montserrat,system-ui,sans-serif}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  section{padding:80px 0}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--bordo);margin-bottom:12px}
+  h2{font-size:clamp(28px,4.4vw,42px);font-weight:800;line-height:1.15;max-width:760px}
+  .lead{font-size:18px;color:var(--testo);max-width:640px;margin-top:16px}
+
+  /* Barra */
+  header{position:sticky;top:0;z-index:20;background:rgba(248,249,250,.88);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+  header.scrolled{border-bottom-color:var(--linea)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Montserrat;font-weight:800;font-size:21px;letter-spacing:.5px}
+  .brand svg{width:28px;height:28px}
+  nav{display:flex;gap:28px;align-items:center}
+  nav a{text-decoration:none;font-size:15px;font-weight:500;color:var(--testo)}
+  nav a:hover{color:var(--bordo)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;transition:transform .15s,background .15s;border:0;cursor:pointer;font-family:inherit}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.prim{background:var(--bordo);color:#fff}
+  .btn.prim:hover{background:var(--bordo-scuro)}
+  .btn.sec{background:var(--bianco);color:var(--antracite);border:1px solid var(--linea)}
+  .btn.small{padding:9px 16px;font-size:14px;border-radius:10px}
+  @media (max-width:760px){ nav .link{display:none} }
+
+  /* Apertura */
+  .hero{padding:56px 0 72px}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .hero .logo{width:72px;height:74px;margin-bottom:24px}
+  .hero h1{font-size:clamp(38px,5.6vw,60px);font-weight:800;line-height:1.05;letter-spacing:-.5px}
+  .hero h1 span{color:var(--bordo)}
+  .hero .payoff{font-size:20px;color:var(--testo);margin-top:20px;max-width:520px}
+  .hero .origine{font-size:13px;letter-spacing:1.5px;color:var(--grigio);margin-top:10px}
+  .hero .origine b{color:var(--antracite);font-weight:600}
+  .hero .azioni{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .gratis{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:14px;font-weight:500;color:var(--testo)}
+  .gratis i{width:8px;height:8px;border-radius:50%;background:#2F7D4F;display:inline-block}
+
+  .telefono{justify-self:center;width:300px;max-width:78vw;aspect-ratio:300/610;border-radius:44px;background:var(--antracite);padding:12px;box-shadow:0 30px 70px rgba(31,41,55,.28),0 0 0 1px rgba(255,255,255,.06) inset;position:relative}
+  .telefono::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:84px;height:22px;border-radius:12px;background:var(--antracite);z-index:2}
+  .schermo{width:100%;height:100%;border-radius:34px;overflow:hidden;background:#fff;position:relative}
+  .schermo img{width:100%;height:auto;animation:scorri 14s ease-in-out 1.2s infinite alternate}
+  @keyframes scorri{0%,12%{transform:translateY(0)}88%,100%{transform:translateY(calc(-100% + 586px))}}
+  .qr-badge{position:absolute;left:-46px;bottom:70px;background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 12px 30px rgba(31,41,55,.18);display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;z-index:3}
+  .qr-badge svg{width:36px;height:36px}
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;gap:56px}
+    .qr-badge{left:-18px}
+  }
+
+  /* Problema */
+  .scuro{background:var(--antracite);color:#F8F9FA}
+  .scuro .eyebrow{color:var(--rosa)}
+  .scuro .lead{color:#D1D5DB}
+  .tre{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  .tre .c{background:var(--antracite-2);border-radius:20px;padding:28px}
+  .tre .c svg{width:40px;height:40px;color:var(--rosa);margin-bottom:16px}
+  .tre .c h3{font-size:21px;font-weight:700;margin-bottom:6px}
+  .tre .c p{color:#D1D5DB;font-size:16px}
+  @media (max-width:760px){ .tre{grid-template-columns:1fr} }
+
+  /* Passi */
+  .passi{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;counter-reset:p}
+  .passo{background:var(--bianco);border:1px solid var(--linea);border-radius:20px;padding:30px;position:relative}
+  .passo .n{font-family:Montserrat;font-weight:800;font-size:44px;color:var(--bordo);line-height:1;margin-bottom:14px}
+  .passo h3{font-size:21px;font-weight:700;margin-bottom:6px}
+  .passo p{color:var(--testo)}
+  @media (max-width:860px){ .passi{grid-template-columns:1fr} }
+
+.nota-prop{margin-top:20px;display:flex;gap:18px;align-items:flex-start;background:var(--bordo-chiaro);border-radius:20px;padding:24px 28px}
+  .nota-prop svg{flex:0 0 36px;width:36px;height:36px;color:var(--bordo)}
+  .nota-prop h3{font-size:19px;font-weight:700;margin-bottom:4px}
+  .nota-prop p{color:var(--testo)}
+  .badge{display:inline-block;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;margin:8px 6px 0 0}
+  .badge.tec{background:#E8F3EC;color:#2F7D4F}
+  .badge.pro{background:#fff;color:var(--bordo);border:1px solid #E7CFCF}
+
+  /* Esempio */
+  .esempio{background:var(--bordo-chiaro)}
+  .esempio .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .esempio .foto{border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(139,46,46,.18);position:relative}
+  .esempio .foto img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:45% 45%}
+  .esempio .foto .tag{position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,.95);border-radius:12px;padding:10px 14px;font-size:14px}
+  .esempio .foto .tag b{display:block;font-family:Montserrat;color:var(--bordo);font-size:13px;letter-spacing:.5px}
+  .lista{list-style:none;margin-top:24px;display:grid;gap:12px}
+  .lista li{display:flex;gap:12px;align-items:flex-start;color:var(--testo)}
+  .lista li svg{flex:0 0 22px;width:22px;height:22px;color:var(--bordo);margin-top:2px}
+  @media (max-width:860px){ .esempio .wrap{grid-template-columns:1fr} }
+
+  /* Per chi */
+  .chi{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  .chi .c{border-radius:20px;padding:32px;background:var(--bianco);border:1px solid var(--linea)}
+  .chi .c.evid{background:var(--bordo);color:#fff;border-color:var(--bordo)}
+  .chi .c svg{width:40px;height:40px;color:var(--bordo);margin-bottom:16px}
+  .chi .c.evid svg{color:#fff}
+  .chi .c h3{font-size:22px;font-weight:700;margin-bottom:12px}
+  .chi .c ul{list-style:none;display:grid;gap:8px}
+  .chi .c li{padding-left:20px;position:relative;color:var(--testo)}
+  .chi .c.evid li{color:var(--bordo-chiaro)}
+  .chi .c li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:8px;border-radius:2px;background:var(--bordo)}
+  .chi .c.evid li::before{background:#fff}
+  @media (max-width:860px){ .chi{grid-template-columns:1fr} }
+
+  /* Contenuto */
+  .quattro{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+  .quattro .c{background:var(--bianco);border:1px solid var(--linea);border-top:5px solid var(--bordo);border-radius:18px;padding:24px}
+  .quattro .c h3{font-size:18px;font-weight:700;margin-bottom:6px}
+  .quattro .c p{font-size:15px;color:var(--testo)}
+  @media (max-width:860px){ .quattro{grid-template-columns:1fr 1fr} }
+  @media (max-width:480px){ .quattro{grid-template-columns:1fr} }
+
+  /* Privacy */
+  .privacy{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+  .privacy .c{border-radius:20px;padding:32px}
+  .privacy .pub{background:var(--bianco);border:1px solid var(--linea)}
+  .privacy .prot{background:var(--antracite);color:#F8F9FA}
+  .privacy h3{font-size:21px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .privacy h3 svg{width:26px;height:26px;color:var(--bordo)}
+  .privacy .prot h3 svg{color:var(--rosa)}
+  .privacy ul{list-style:none;display:grid;gap:8px;color:var(--testo)}
+  .privacy .prot ul{color:#D1D5DB}
+  @media (max-width:760px){ .privacy{grid-template-columns:1fr} }
+
+  /* Gratuito */
+  .gratuito{background:var(--bordo);color:#fff;text-align:center}
+  .gratuito .eyebrow{color:var(--bordo-chiaro)}
+  .gratuito h2{margin:0 auto;color:#fff}
+  .gratuito .lead{color:var(--bordo-chiaro);margin:16px auto 0}
+  .gratuito .due{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:820px;margin:40px auto 0;text-align:left}
+  .gratuito .due .c{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:28px}
+  .gratuito .due h3{font-size:20px;margin-bottom:6px}
+  .gratuito .due p{color:var(--bordo-chiaro)}
+  @media (max-width:760px){ .gratuito .due{grid-template-columns:1fr} }
+
+  /* FAQ */
+  .faq{max-width:800px;margin-top:36px}
+  details{background:var(--bianco);border:1px solid var(--linea);border-radius:16px;padding:0 22px;margin-bottom:12px}
+  summary{list-style:none;cursor:pointer;padding:20px 0;font-weight:600;font-size:17px;display:flex;justify-content:space-between;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-family:Montserrat;font-size:24px;line-height:1;color:var(--bordo);transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{padding:0 0 20px;color:var(--testo)}
+
+  /* Contatti */
+  .contatti{text-align:center}
+  .contatti h2{margin:0 auto}
+  .contatti .lead{margin:16px auto 32px}
+  .mail{font-family:Montserrat;font-weight:700;font-size:clamp(22px,4vw,30px);color:var(--bordo);text-decoration:none;display:inline-block;margin-top:18px}
+
+  footer{border-top:1px solid var(--linea);padding:36px 0 44px;font-size:14px;color:var(--grigio)}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+  footer .brand{font-size:17px;color:var(--antracite)}
+  footer .brand svg{width:22px;height:22px}
+
+  /* Comparsa allo scorrimento */
+  .rivela{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .rivela.vista{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .rivela{opacity:1;transform:none;transition:none}
+    .schermo img{animation:none}
+  }
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="d" viewBox="-2 -2 100.5 104"><path fill="#8B2E2E" d="M0 0H50A46.5 50 0 0 1 50 100H0V82H48A27 32 0 0 0 48 18H0Z"/><rect fill="#8B2E2E" x="0" y="36.5" width="29" height="27"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="m8 12 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header id="top">
+  <div class="wrap">
+    <a class="brand" href="#"><svg><use href="#d"/></svg>DOMID</a>
+    <nav>
+      <a class="link" href="#come">Come funziona</a>
+      <a class="link" href="#chi">Per chi</a>
+      <a class="link" href="#faq">Domande</a>
+      <a class="btn prim small" href="000001/">Guarda un esempio</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-  <svg class="logo" viewBox="-2 -2 100.5 104" aria-hidden="true"><path fill="#8B2E2E" d="M0 0H50A46.5 50 0 0 1 50 100H0V82H48A27 32 0 0 0 48 18H0Z"/><rect fill="#8B2E2E" x="0" y="36.5" width="29" height="27"/></svg>
-  <h1>DOMID</h1>
-  <div class="tag">L'identità digitale dell'immobile</div>
-  <div class="origine"><b>DOM</b>us <b>ID</b>entity</div>
-  <div class="claim">Un immobile. Un QR.<br>Tutta la sua storia.</div>
-  <p>Pratiche, planimetrie, attestati e lavori eseguiti, raccolti nel tempo e legati alla casa, non al proprietario. Il proprietario decide chi può vedere cosa.</p>
-  <div class="soon">Progetto pilota · 2026</div>
-  <footer>Informazioni: <a href="mailto:info@domid.it">info@domid.it</a></footer>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <svg class="logo" aria-hidden="true"><use href="#d"/></svg>
+      <h1>Un immobile.<br>Un&nbsp;QR.<br><span>Tutta la sua storia.</span></h1>
+      <p class="payoff">DOMID è l'identità digitale dell'immobile: pratiche, catasto, energia e lavori raccolti in un unico fascicolo che resta legato alla casa.</p>
+      <p class="origine"><b>DOM</b>us <b>ID</b>entity</p>
+      <div class="azioni">
+        <a class="btn prim" href="000001/">Guarda un esempio
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn sec" href="#come">Come funziona</a>
+      </div>
+      <p class="gratis"><i></i>Gratuito per proprietari e agenzie</p>
+    </div>
+    <div class="telefono" role="img" aria-label="La scheda DOMID di una casa vista dal telefono">
+      <div class="schermo"><img src="img/scheda-telefono.jpg" alt=""></div>
+      <div class="qr-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8B2E2E" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>
+        Inquadra<br>e consulta
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scuro">
+  <div class="wrap">
+    <p class="eyebrow">Il problema</p>
+    <h2 class="rivela">Quando una casa si vende, i suoi documenti non si trovano.</h2>
+    <div class="tre">
+      <div class="c rivela">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <h3>Dispersi</h3><p>Comune, Catasto, tecnici diversi, cassetti di casa.</p>
+      </div>
+      <div class="c rivela">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <h3>Lenti</h3><p>Accessi agli atti e ricerche che richiedono settimane.</p>
+      </div>
+      <div class="c rivela">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17v.01"/></svg>
+        <h3>Sorprese</h3><p>Difformità scoperte a ridosso del rogito.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="come">
+  <div class="wrap">
+    <p class="eyebrow">Come funziona</p>
+    <h2 class="rivela">Tre passi, nessuna app da installare.</h2>
+    <div class="passi">
+      <div class="passo rivela"><div class="n">1</div><h3>Il tecnico aggiorna</h3><p>Dopo ogni pratica (CILA, SCIA, DOCFA, APE) il fascicolo della casa si arricchisce di un nuovo capitolo.</p></div>
+      <div class="passo rivela"><div class="n">2</div><h3>Il QR resta alla casa</h3><p>Un foglio stampato, conservato insieme ai documenti dell'immobile. In caso di vendita passa con le chiavi.</p></div>
+      <div class="passo rivela"><div class="n">3</div><h3>Chi inquadra, vede</h3><p>Con la fotocamera del telefono si apre la scheda. I documenti solo con il codice del proprietario.</p></div>
+    </div>
+    <div class="nota-prop rivela">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M12 12v5M9.5 14.5h5"/></svg>
+      <div>
+        <h3>Lavori senza tecnico? Li aggiunge il proprietario.</h3>
+        <p>Caldaia nuova, infissi, bagno rinnovato, manutenzioni: il proprietario li registra con data, ditta, fattura e foto. Nella storia della casa restano sempre distinti.</p>
+        <span class="badge tec">✓ Verificato dal tecnico</span><span class="badge pro">Dichiarato dal proprietario</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="esempio">
+  <div class="wrap">
+    <div class="foto rivela">
+      <img src="000001/casa.jpg" alt="La casa di Via Roncade 4 a Lugugnana di Portogruaro" loading="lazy">
+      <div class="tag"><b>DOMID 000001</b>Via Roncade 4 · Lugugnana (VE)</div>
+    </div>
+    <div>
+      <p class="eyebrow">Un esempio reale</p>
+      <h2 class="rivela">Cinquant'anni di storia in una pagina.</h2>
+      <ul class="lista">
+        <li><svg><use href="#i-ok"/></svg>Costruzione del 1971 e agibilità del 1972</li>
+        <li><svg><use href="#i-ok"/></svg>Sanatorie, SCIA e varianti dal 2003 al 2019</li>
+        <li><svg><use href="#i-ok"/></svg>Variazione catastale e attestato energetico</li>
+        <li><svg><use href="#i-ok"/></svg>10 documenti nel fascicolo, protetti da codice</li>
+      </ul>
+      <div class="azioni" style="margin-top:28px"><a class="btn prim" href="000001/">Apri la scheda</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="chi">
+  <div class="wrap">
+    <p class="eyebrow">Per chi</p>
+    <h2 class="rivela">Un fascicolo, tre vantaggi diversi.</h2>
+    <div class="chi">
+      <div class="c rivela">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg>
+        <h3>Proprietari</h3>
+        <ul><li>Tutto in ordine, sempre a portata di mano</li><li>Decidi tu chi vede cosa</li><li>Più valore quando vendi</li></ul>
+      </div>
+      <div class="c evid rivela">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M15 8l2 2"/></svg>
+        <h3>Agenzie immobiliari</h3>
+        <ul><li>Situazione chiara già all'incarico</li><li>Trattative più rapide</li><li>Meno sorprese al rogito</li></ul>
+      </div>
+      <div class="c rivela">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>
+        <h3>Tecnici e imprese</h3>
+        <ul><li>Conoscono la storia prima di progettare</li><li>Ogni pratica resta tracciata</li><li>Meno accessi agli atti</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">Cosa contiene</p>
+    <h2 class="rivela">Tutta la storia tecnica, in un posto solo.</h2>
+    <div class="quattro">
+      <div class="c rivela"><h3>Pratiche edilizie</h3><p>Titoli originari, CILA, SCIA, agibilità, sanatorie</p></div>
+      <div class="c rivela"><h3>Catasto</h3><p>Visure, planimetrie, variazioni DOCFA</p></div>
+      <div class="c rivela"><h3>Energia</h3><p>APE e conformità degli impianti</p></div>
+      <div class="c rivela"><h3>Lavori</h3><p>Interventi eseguiti e certificazioni</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">Privacy</p>
+    <h2 class="rivela">Il proprietario decide chi vede cosa.</h2>
+    <div class="privacy">
+      <div class="c pub rivela">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Scheda pubblica</h3>
+        <ul><li>Tipologia, piani, superficie</li><li>Anno di costruzione e classe energetica</li><li>Storia degli interventi</li><li>Elenco dei documenti presenti</li></ul>
+      </div>
+      <div class="c prot rivela">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Con codice di accesso</h3>
+        <ul><li>Dati catastali</li><li>Planimetrie e visure</li><li>Titoli edilizi e pratiche</li><li>Certificazioni e lavori</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gratuito">
+  <div class="wrap">
+    <p class="eyebrow">Quanto costa</p>
+    <h2 class="rivela">DOMID è gratuito.</h2>
+    <p class="lead">Nessun abbonamento, nessun costo nascosto.</p>
+    <div class="due">
+      <div class="c rivela"><h3>Gratis</h3><p>Fascicolo digitale, QR stampabile e scheda dell'immobile, per proprietari e agenzie.</p></div>
+      <div class="c rivela"><h3>Su richiesta</h3><p>Se dal fascicolo emerge che manca qualcosa (un documento, una verifica, una pratica, l'APE) il servizio viene proposto con un preventivo. Si decide liberamente.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow">Domande frequenti</p>
+    <h2>Le risposte in breve.</h2>
+    <div class="faq">
+      <details><summary>Cosa succede se vendo la casa?</summary><p>Il fascicolo resta all'immobile. Il QR passa al nuovo proprietario insieme alle chiavi e la storia continua da dove si era fermata.</p></details>
+      <details><summary>Chi carica i documenti?</summary><p>Un tecnico abilitato, dopo aver verificato i documenti. È questo che rende il fascicolo affidabile per agenzie, notai e banche.</p></details>
+      <details><summary>Serve installare un'app?</summary><p>No. Basta la fotocamera del telefono: il QR apre la scheda nel browser.</p></details>
+      <details><summary>Posso aggiornare io la scheda?</summary><p>Sì, per i lavori che non richiedono un tecnico: caldaia, infissi, manutenzioni, rinnovi interni. Li inserisci tu con fatture e foto e compaiono come "dichiarati dal proprietario". Pratiche edilizie e catasto restano invece di competenza del tecnico, così il fascicolo rimane affidabile.</p></details>
+      <details><summary>Chi può vedere i miei documenti?</summary><p>Solo chi riceve dal proprietario il codice di accesso. Senza codice si vede soltanto la scheda pubblica.</p></details>
+      <details><summary>Quanto costa?</summary><p>DOMID è gratuito. Solo se manca qualcosa viene proposto il servizio necessario, con un preventivo e senza alcun obbligo.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="contatti" style="padding-top:20px">
+  <div class="wrap">
+    <p class="eyebrow">Contatti</p>
+    <h2 class="rivela">Vuoi DOMID per la tua casa o la tua agenzia?</h2>
+    <p class="lead">Scrivici: ti spieghiamo come attivare il fascicolo del tuo immobile.</p>
+    <a class="btn prim" href="mailto:info@domid.it?subject=Informazioni%20DOMID">Scrivici una email</a><br>
+    <a class="mail" href="mailto:info@domid.it?subject=Informazioni%20DOMID">info@domid.it</a>
+  </div>
+</section>
+
 </main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#"><svg><use href="#d"/></svg>DOMID</a>
+    <span>L'identità digitale dell'immobile · Progetto pilota 2026</span>
+    <a href="mailto:info@domid.it">info@domid.it</a>
+  </div>
+</footer>
+
+<script>
+  const h = document.querySelector("header");
+  addEventListener("scroll", () => h.classList.toggle("scrolled", scrollY > 8), {passive:true});
+  const els = document.querySelectorAll(".rivela");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("vista"); io.unobserve(e.target); } }), {threshold:.12});
+    els.forEach(el => io.observe(el));
+  } else els.forEach(el => el.classList.add("vista"));
+</script>
 </body>
 </html>
